@@ -1,0 +1,16 @@
+# Private credentials (NEVER commit to Git / GitHub)
+credentials.json
+*/credentials.json
+**/.agents/**/credentials.json
+
+# Operating System & Log files
+.DS_Store
+*/.DS_Store
+**/.DS_Store
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Node modules (if generated locally)
+node_modules/
