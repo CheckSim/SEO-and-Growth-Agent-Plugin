@@ -31,3 +31,11 @@ Deliver actionable analyses, identify ranking quick wins, optimize metadata, str
      - For Search Console: `list_sites`, `search_analytics`, `detect_quick_wins`, `enhanced_search_analytics`, `index_inspect`, `list_sitemaps`, `get_sitemap`, `submit_sitemap`.
      - For Google Analytics 4: `ga4_get_client_context`, `ga4_run_report`, `ga4_realtime_report`, `ga4_list_custom_dimensions`, `ga4_list_custom_metrics`, `ga4_list_data_streams`.
      - For PageSpeed Insights: `pagespeed_analyze_page`, `pagespeed_diagnose_page`, `pagespeed_get_field_data`, `pagespeed_compare_pages`, `pagespeed_analyze_batch`.
+     - For All-in-One SEO & Growth Suite (`seo-growth-tools`):
+       - Keyword Intent: `google_suggest_keyword_tree`.
+       - Instant Indexing: `indexnow_submit_urls`, `indexnow_generate_key`.
+       - Live Crawling & Auditing: `crawl_site_sitemap`, `audit_page_technical`.
+       - Structured Data: `validate_jsonld_schema`.
+       - Competitor & SERP: `inspect_live_serp`, `analyze_competitor_content`.
+       - GEO & LLM Citations: `validate_llms_txt`, `test_ai_brand_citation`.
+       - Community Distribution: `search_community_discussions`.

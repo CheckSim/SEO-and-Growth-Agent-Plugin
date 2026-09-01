@@ -22,6 +22,10 @@ const env = { ...process.env, GOOGLE_APPLICATION_CREDENTIALS: credPath };
 let command = 'npx';
 let args = [];
 
+if (creds.indexnow_key) env.INDEXNOW_KEY = String(creds.indexnow_key);
+if (creds.serper_api_key) env.SERPER_API_KEY = String(creds.serper_api_key);
+if (creds.perplexity_api_key) env.PERPLEXITY_API_KEY = String(creds.perplexity_api_key);
+
 if (serverType === 'gsc') {
   args = ['-y', 'mcp-server-gsc'];
 } else if (serverType === 'ga4') {
@@ -34,6 +38,9 @@ if (serverType === 'gsc') {
     env.GOOGLE_API_KEY = String(creds.google_api_key);
   }
   args = ['-y', 'pagespeed-insights-mcp'];
+} else if (serverType === 'tools') {
+  command = 'node';
+  args = [path.resolve(__dirname, 'server/index.js')];
 } else {
   console.error('[runner] Unknown server type:', serverType);
   process.exit(1);

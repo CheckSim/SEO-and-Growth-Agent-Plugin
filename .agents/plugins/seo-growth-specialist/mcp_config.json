@@ -11,6 +11,10 @@
     "pagespeed-insights": {
       "command": "node",
       "args": [".agents/plugins/seo-growth-specialist/runner.js", "pagespeed"]
+    },
+    "seo-growth-tools": {
+      "command": "node",
+      "args": [".agents/plugins/seo-growth-specialist/runner.js", "tools"]
     }
   }
 }

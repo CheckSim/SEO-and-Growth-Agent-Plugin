@@ -8,10 +8,18 @@
 
 Il **SEO & Growth Specialist** è un plugin autonomo e pronto all'uso per **Google Antigravity** che trasforma il tuo assistente AI in un consulente senior di SEO tecnica, ottimizzazione dei contenuti, growth hacking e monitoraggio delle performance Core Web Vitals a **costo zero (zero budget ADV)**.
 
-Grazie all'integrazione di 3 server MCP (Model Context Protocol) ufficiali, l'agente analizza dati reali in tempo reale:
+Grazie all'integrazione di 4 server MCP (Model Context Protocol), l'agente analizza dati reali e copre l'intero funnel di crescita organica:
 1. **Google Search Console** (`google-search-console`): Query reali digitate dagli utenti, impression, click, CTR, posizionamenti medi, sitemap e stato di indicizzazione.
 2. **Google Analytics 4** (`google-analytics`): Sessioni, canali di acquisizione (organico, direct, referral, social), conversioni ed eventi personalizzati.
 3. **Google PageSpeed Insights** (`pagespeed-insights`): Core Web Vitals (LCP, CLS, INP, FCP) e diagnosi prestazionale mobile/desktop.
+4. **All-in-One Growth & Technical Suite** (`seo-growth-tools`):
+   - **Google & Bing Suggest**: Espansione di keyword ad albero e intent cluster illimitati (100% gratuito, zero chiavi).
+   - **Live Site Crawler & Page Auditor**: Verifica codici HTTP da sitemap, broken links (404), struttura H1-H3, meta tag e canonical.
+   - **Schema.org JSON-LD Validator**: Validazione offline di sintassi e idoneità ai Google Rich Snippet.
+   - **Instant Indexing (IndexNow)**: Notifica istantanea di nuovi URL a Bing, Yandex e crawler AI.
+   - **Live SERP & Competitor Intelligence**: Posizionamenti top 10 su Google, box People Also Ask (PAA) e scraping profondo dei competitor.
+   - **Generative Engine Optimization (GEO)**: Linter per file `llms.txt` e benchmark citazioni AI (Perplexity / Gemini).
+   - **Community Intent Monitor**: Monitoraggio discussioni su Reddit e Hacker News per distribuzione organica a budget zero.
 
 ---
 
@@ -35,7 +43,7 @@ graph TD
     Auto2 --> DetectStack
     AskUser --> DetectStack
     
-    DetectStack --> RunAudit[5. Esecuzione Audit con GSC + GA4 + PageSpeed Insights]
+    DetectStack --> RunAudit[5. Esecuzione Audit con GSC + GA4 + PageSpeed + Live Crawler + Intent Tools]
 ```
 
 1. **Auto-Selezione Search Console**: Interroga `list_sites`. Se il tuo account ha accesso a un solo sito (scenario standard), lo seleziona all'istante. In presenza di più domini, effettua il match con il progetto aperto o ti propone la scelta.

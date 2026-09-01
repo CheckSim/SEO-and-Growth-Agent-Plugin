@@ -69,6 +69,18 @@ graph TD
 * `pagespeed_compare_pages`: comparative benchmarking (mobile vs desktop, or between landing pages).
 * `pagespeed_analyze_batch`: batch analysis across multiple key URLs.
 
+### 4. Omnicomprehensive SEO & Growth Suite (`seo-growth-tools`)
+* `google_suggest_keyword_tree`: generate deep keyword intent trees using Google and Bing Suggest with question/commercial modifiers (100% free, zero key).
+* `crawl_site_sitemap`: crawl full `sitemap.xml` monitoring HTTP status codes (200, 301, 404, 500) and broken links.
+* `audit_page_technical`: live on-page audit (title, description, canonical, robots, H1-H3, missing alt, OpenGraph, JSON-LD schemas).
+* `validate_jsonld_schema`: offline validation of Schema.org JSON-LD structured data and Rich Snippets eligibility.
+* `indexnow_submit_urls` & `indexnow_generate_key`: instant URL indexing for Bing, Yandex, Seznam, and AI search engines.
+* `inspect_live_serp`: live Google SERP positions, People Also Ask (PAA), and search snippets.
+* `analyze_competitor_content`: competitor page analyzer (headings, word count, reading time, keyword density, schemas).
+* `validate_llms_txt`: `llms.txt` and `llms-full.txt` syntax and GEO readiness linter.
+* `test_ai_brand_citation`: AI brand visibility and citation benchmark tracker (Perplexity / Gemini).
+* `search_community_discussions`: search intent-driven discussions on Reddit and Hacker News for zero-budget distribution.
+
 ---
 
 ## 📋 Standard Operating Procedures (SOPs)
@@ -79,32 +91,50 @@ graph TD
    - Pinpoint high-potential keywords (positions 4-15) using `detect_quick_wins`.
 2. **Traffic & Engagement Analysis on GA4**:
    - Run `ga4_run_report` to evaluate landing pages with top engagement time, scroll depth, and conversion rates.
-3. **Technical & Speed Health Check**:
-   - Inspect sitemaps with `list_sitemaps`, check canonical/meta tags on key pages, and audit Core Web Vitals with `pagespeed_analyze_page`.
+3. **Live Technical & Speed Health Check**:
+   - Run `crawl_site_sitemap` and `audit_page_technical` on key URLs to catch 404s, missing canonicals, or broken H1 hierarchy.
+   - Audit Core Web Vitals with `pagespeed_analyze_page`.
 4. **Actionable Report Output**:
    - Generate a clear action table:
      | Keyword / Landing Page | Impressions | Current Clicks | Avg Position | Recommended Action (Title, H1, FAQ, Schema) | Priority (ICE) |
 
 ---
 
-### Procedure 2: Scalable Programmatic SEO Strategy
+### Procedure 2: Scalable Programmatic SEO & Instant Indexing
 When designing landing pages targeting hundreds of search intents:
 1. Review the [programmatic_seo_playbook.md](./references/programmatic_seo_playbook.md) guide.
-2. Select the relevant business archetype (*Directory/Comparators*, *E-Commerce*, *SaaS/Software Tools*, *Local Business & Lead Gen*).
-3. Architect the scalable URL hierarchy and data schema.
-4. Design high-intent page blocks: dynamic summary header, comparison/data matrix, contextual FAQs with `FAQPage` JSON-LD schema, and bidirectional internal cross-linking grids.
+2. Generate comprehensive long-tail keyword variations using `google_suggest_keyword_tree`.
+3. Select the relevant business archetype (*Directory/Comparators*, *E-Commerce*, *SaaS/Software Tools*, *Local Business & Lead Gen*).
+4. Architect the scalable URL hierarchy and validate JSON-LD structured data with `validate_jsonld_schema`.
+5. Upon page generation/publishing, notify search engines instantly using `indexnow_submit_urls`.
 
 ---
 
 ### Procedure 3: Generative Engine Optimization (GEO & AI Search)
 To maximize visibility in generative engines (ChatGPT Search, Perplexity, Google AI Overviews, Copilot):
 1. Review the [geo_ai_optimization.md](./references/geo_ai_optimization.md) guide.
-2. Create or maintain `llms.txt` and `llms-full.txt` files containing concise summaries of site services, entities, and policies.
+2. Create or maintain `llms.txt` and validate it using `validate_llms_txt`.
 3. Optimize on-page content with high information density (assertive statements in the first 50 characters of paragraphs, clean semantic HTML tables, precise Named Entities).
+4. Benchmark AI citations for core product queries using `test_ai_brand_citation`.
 
 ---
 
-### Procedure 4: Core Web Vitals & Speed Optimization Audit
+### Procedure 4: Competitor Content Benchmarking & SERP Gap Analysis
+1. Inspect live rankings and People Also Ask questions using `inspect_live_serp`.
+2. Extract competitor page content blueprints using `analyze_competitor_content`.
+3. Identify missing sub-topics, unaddressed user questions, and thin content areas.
+4. Draft superior, higher-utility content incorporating Schema.org `FAQPage` or `HowTo` markup.
+
+---
+
+### Procedure 5: Zero-Budget Community Distribution
+1. Run `search_community_discussions` with high-intent keywords representing user pain points.
+2. Select active threads on Reddit or Hacker News where users request recommendations.
+3. Draft authentic, high-value, non-spam replies addressing the question directly and citing the relevant resource URL contextually.
+
+---
+
+### Procedure 6: Core Web Vitals & Speed Optimization Audit
 1. Run `pagespeed_analyze_page` with `strategy="mobile"` on the homepage and key landing pages.
 2. Verify compliance with Google Core Web Vitals thresholds:
    - **LCP (Largest Contentful Paint)**: < 2.5s

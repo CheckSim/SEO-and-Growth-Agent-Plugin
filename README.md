@@ -8,10 +8,18 @@
 
 The **SEO & Growth Specialist** is an autonomous, production-ready plugin for **Google Antigravity** that turns your AI assistant into a senior technical SEO, content optimization, growth hacking, and Core Web Vitals performance consultant with **zero advertising budget required**.
 
-By leveraging 3 official Model Context Protocol (MCP) servers, the agent inspects real production data in real time:
+By leveraging 4 Model Context Protocol (MCP) servers, the agent inspects real production data and provides full-funnel organic growth execution:
 1. **Google Search Console** (`google-search-console`): Real search queries, impressions, CTR, average positions, sitemaps, and URL indexing inspection.
 2. **Google Analytics 4** (`google-analytics`): Sessions, user acquisition channels (organic, direct, referral, social), conversions, and custom events.
 3. **Google PageSpeed Insights** (`pagespeed-insights`): Core Web Vitals (LCP, CLS, INP, FCP) and mobile/desktop performance diagnostics.
+4. **All-in-One Growth & Technical Suite** (`seo-growth-tools`):
+   - **Google & Bing Suggest**: Unlimited long-tail keyword trees & search intent mapping (100% free, zero key).
+   - **Live Site Crawler & Page Auditor**: Sitemap HTTP status codes, broken links (404), H1-H3 structure, meta tags, and canonicals.
+   - **Schema.org JSON-LD Validator**: Offline schema syntax and Google Rich Snippet validator.
+   - **Instant Indexing (IndexNow)**: Instant URL submission to Bing, Yandex, and AI search engines.
+   - **Live SERP & Competitor Intelligence**: Top 10 rankings, People Also Ask (PAA) questions, and deep competitor content scraping.
+   - **Generative Engine Optimization (GEO)**: `llms.txt` linter and AI citation benchmarking (Perplexity / Gemini).
+   - **Community Intent Monitor**: Reddit & Hacker News thread discovery for zero-budget organic distribution.
 
 > 🇮🇹 *Per la guida completa in lingua italiana, consulta [README_IT.md](./README_IT.md).*
 
@@ -37,7 +45,7 @@ graph TD
     Auto2 --> DetectStack
     AskUser --> DetectStack
     
-    DetectStack --> RunAudit[5. Execute Audit with GSC + GA4 + PageSpeed Insights]
+    DetectStack --> RunAudit[5. Execute Audit with GSC + GA4 + PageSpeed + Live Crawler + Intent Tools]
 ```
 
 1. **Search Console Auto-Selection**: Interrogates `list_sites`. If your Google Service Account has access to 1 site (standard setup), it selects it automatically without prompting you. If you manage multiple properties, it matches against your workspace domain or prompts you with an interactive selection.
