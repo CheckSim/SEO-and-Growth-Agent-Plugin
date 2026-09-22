@@ -55,26 +55,34 @@ graph TD
 ## 📁 Struttura del Plugin
 
 ```text
-seo-growth-specialist/
-├── plugin.json                 # Manifest formale del plugin per Antigravity
+SEO-and-Growth-Agent-Plugin/
+├── package.json                # Gestione script (setup, test) e dipendenze root
+├── setup.js                    # Script universale di auto-setup intelligente
+├── credentials.example.json    # Template di esempio pronto all'uso
 ├── README.md                   # Documentazione ufficiale in inglese (GitHub)
 ├── README_IT.md                # Questa guida completa in italiano
-├── runner.js                   # Runner dinamico a zero-config per i server MCP
-├── credentials.json            # File UNICO di credenziali (GSC + GA4 + PageSpeed) [NON COMMETTERE]
-├── credentials.example.json    # Template di esempio pronto all'uso
-├── mcp_config.json             # Configurazione generica senza segreti hardcodati
-├── rules/
-│   └── AGENTS.md               # Definizione del Ruolo, Persona e Principi Data-Driven
-├── agents/
-│   └── seo.md                  # Definizione Custom Agent & Subagent per il menu /agents
-└── skills/
-    └── seo-growth-specialist/
-        ├── SKILL.md            # Procedure Operative Standard & Flusso Dinamico
-        └── references/
-            ├── free_tools_stack.md           # Stack di strumenti e diagnostica 100% gratuiti
-            ├── programmatic_seo_playbook.md  # Playbook di Programmatic SEO (4 archetipi)
-            ├── geo_ai_optimization.md        # Guida GEO & AI Search (ChatGPT, Perplexity, Gemini)
-            └── growth_experiments_backlog.md # Backlog esperimenti di crescita a costo zero (ICE)
+├── LICENSE                     # Licenza open-source MIT
+└── .agents/
+    └── plugins/
+        └── seo-growth-specialist/
+            ├── plugin.json                 # Manifest formale del plugin per Antigravity
+            ├── package.json                # Dipendenze e script interni del plugin
+            ├── setup.js                    # Script di setup per installazione standalone
+            ├── runner.js                   # Runner dinamico ibrido a zero-config per server MCP
+            ├── credentials.json            # File UNICO di credenziali (GSC + GA4 + PageSpeed) [NON COMMETTERE]
+            ├── credentials.example.json    # Template di backup per esportazione
+            ├── mcp_config.json             # Configurazione generica dei 4 server MCP
+            ├── rules/
+            │   └── AGENTS.md               # Definizione del Ruolo, Persona e Principi Data-Driven
+            ├── agents/
+            │   └── seo.md                  # Definizione Custom Agent & Subagent per il menu /agents
+            ├── server/                     # MCP Server nativo "seo-growth-tools" (Node.js puro)
+            │   ├── index.js
+            │   └── tools/ (suggest, indexnow, crawler, schema, serp, geo, community)
+            ├── skills/
+            │   └── seo-growth-specialist/  # Procedure Operative Standard & 4 Playbook
+            └── test/
+                └── suite.test.js           # Suite di test unitari automatizzati (5 test)
 ```
 
 ---
@@ -105,7 +113,7 @@ Prima di iniziare, assicurati di avere:
 
 ---
 
-## 🚀 Installazione
+## 🚀 Installazione Rapida in 60 Secondi
 
 ### Opzione A: Installazione nel Singolo Progetto (Consigliata per Team)
 Installa il plugin direttamente nel repository del tuo sito affinché sia condiviso con tutti i collaboratori:
@@ -113,7 +121,9 @@ Installa il plugin direttamente nel repository del tuo sito affinché sia condiv
 ```bash
 # Dalla cartella radice del tuo progetto:
 mkdir -p .agents/plugins/
-git clone https://github.com/CheckSim/SEO-Agent-Plugin.git .agents/plugins/seo-growth-specialist
+git clone https://github.com/CheckSim/SEO-and-Growth-Agent-Plugin.git .agents/plugins/seo-growth-specialist
+cd .agents/plugins/seo-growth-specialist
+npm run setup
 ```
 
 ### Opzione B: Installazione Globale (Disponibile in Tutti i Progetti)
@@ -121,8 +131,18 @@ Rendi il plugin accessibile per qualsiasi workspace o progetto aperto su Antigra
 
 ```bash
 mkdir -p ~/.gemini/config/plugins/
-git clone https://github.com/CheckSim/SEO-Agent-Plugin.git ~/.gemini/config/plugins/seo-growth-specialist
+git clone https://github.com/CheckSim/SEO-and-Growth-Agent-Plugin.git ~/.gemini/config/plugins/seo-growth-specialist
+cd ~/.gemini/config/plugins/seo-growth-specialist
+npm run setup -- --global
 ```
+
+> [!TIP]
+> **Cosa fa automaticamente `npm run setup`?**
+> 1. Rileva automaticamente se ti trovi in una repository locale o nella directory globale `~/.gemini/config`.
+> 2. Risolve dinamicamente i percorsi assoluti/relativi di `runner.js`.
+> 3. Esegue uno **Smart-Merge non distruttivo** su `mcp_config.json`, registrando i 4 server MCP SEO e **preservando intatti** eventuali altri server preesistenti (come Supabase, Google Maps, ecc.).
+> 4. Se `credentials.json` non è presente, lo crea automaticamente dal template `credentials.example.json`.
+> 5. Esegue la suite di test unitari automatizzati per certificare che l'engine sia al 100% operativo.
 
 ---
 
@@ -186,12 +206,12 @@ Segui questi 4 semplici passaggi per collegare Search Console, GA4 e PageSpeed i
 
 ---
 
-### Passo 4: Creazione del File Unico `credentials.json`
+### Passo 4: Configurazione del File Unico `credentials.json`
 
-1. Posiziona il file `.json` del Service Account scaricato al Passo 1 dentro la cartella del plugin:
+1. Se hai già eseguito `npm run setup`, il file `credentials.json` è già stato creato per te a partire dal template. Altrimenti, posiziona o copia il file dentro la cartella del plugin:
    - Per installazione nel progetto: `.agents/plugins/seo-growth-specialist/credentials.json`
    - Per installazione globale: `~/.gemini/config/plugins/seo-growth-specialist/credentials.json`
-2. Apri `credentials.json` con un editor di testo e **aggiungi in fondo i due campi extra**:
+2. Apri `credentials.json` con un editor di testo, incolla la chiave Service Account scaricata da Google Cloud e **aggiungi in fondo i due campi extra**:
    - `"ga4_property_id"`: con il tuo ID numerico di GA4 (es. `"123456789"`).
    - `"google_api_key"`: con la tua API Key (es. `"AIzaSy..."`).
 

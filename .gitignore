@@ -1,16 +1,50 @@
-# Private credentials (NEVER commit to Git / GitHub)
+# ==============================================================================
+# 1. Credenziali & Segreti Privati (CRITICO: Non committare MAI su GitHub)
+# ==============================================================================
 credentials.json
 */credentials.json
 **/.agents/**/credentials.json
+*.local.json
+.env
+.env.*
+!.env.example
 
-# Operating System & Log files
-.DS_Store
-*/.DS_Store
-**/.DS_Store
-*.log
+# ==============================================================================
+# 2. Configurazione MCP Locale di Runtime (Evita conflitti con server terzi)
+# ==============================================================================
+# Il template ufficiale del plugin è custodito dentro:
+# .agents/plugins/seo-growth-specialist/mcp_config.json (tracciato)
+# Il file root viene generato/fuso localmente da setup.js e non va committato:
+.agents/mcp_config.json
+
+# ==============================================================================
+# 3. Dipendenze Node & Package Manager Logs
+# ==============================================================================
+node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
 
-# Node modules (if generated locally)
-node_modules/
+# ==============================================================================
+# 4. File Temporanei di Sistema & OS Cache
+# ==============================================================================
+.DS_Store
+*/.DS_Store
+**/.DS_Store
+._*
+Thumbs.db
+desktop.ini
+*.log
+*.tmp
+*.temp
+
+# ==============================================================================
+# 5. Configurazione Editor & IDE Locali
+# ==============================================================================
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.zed/

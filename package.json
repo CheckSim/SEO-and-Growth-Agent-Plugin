@@ -1,0 +1,17 @@
+{
+  "name": "seo-and-growth-agent-plugin",
+  "version": "1.0.0",
+  "description": "Autonomous SEO & Growth Specialist Plugin for Google Antigravity",
+  "scripts": {
+    "setup": "node setup.js",
+    "test": "node .agents/plugins/seo-growth-specialist/test/suite.test.js"
+  },
+  "dependencies": {
+    "mcp-server-gsc": "^0.1.0",
+    "mcp-ga4": "^0.1.0",
+    "pagespeed-insights-mcp": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

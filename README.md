@@ -57,26 +57,34 @@ graph TD
 ## 📁 Plugin Architecture
 
 ```text
-seo-growth-specialist/
-├── plugin.json                 # Antigravity official plugin manifest
+SEO-and-Growth-Agent-Plugin/
+├── package.json                # Root dependency and script manager (setup, test)
+├── setup.js                    # Universal smart auto-setup script
+├── credentials.example.json    # Clean template ready for duplication
 ├── README.md                   # Official English documentation (GitHub)
 ├── README_IT.md                # Complete step-by-step Italian guide
-├── runner.js                   # Lightweight zero-config dynamic MCP runner
-├── credentials.json            # Unified credentials file (GSC + GA4 + PageSpeed) [GITIGNORED]
-├── credentials.example.json    # Clean template ready for duplication
-├── mcp_config.json             # 100% generic MCP configuration (zero hardcoded secrets)
-├── rules/
-│   └── AGENTS.md               # Persona, Role, and Data-Driven Principles
-├── agents/
-│   └── seo.md                  # Custom Agent & Subagent definition for the /agents menu
-└── skills/
-    └── seo-growth-specialist/
-        ├── SKILL.md            # Standard Operating Procedures & Dynamic Context Flow
-        └── references/
-            ├── free_tools_stack.md           # 100% Free tools & analytics stack
-            ├── programmatic_seo_playbook.md  # Scalable programmatic SEO playbook (4 archetypes)
-            ├── geo_ai_optimization.md        # Generative Engine Optimization (ChatGPT, Perplexity, Gemini)
-            └── growth_experiments_backlog.md # Zero-budget growth experiments backlog (ICE Framework)
+├── LICENSE                     # MIT Open-Source License
+└── .agents/
+    └── plugins/
+        └── seo-growth-specialist/
+            ├── plugin.json                 # Antigravity official plugin manifest
+            ├── package.json                # Internal plugin dependencies and scripts
+            ├── setup.js                    # Standalone setup script
+            ├── runner.js                   # Lightweight hybrid zero-config MCP runner
+            ├── credentials.json            # Unified credentials file (GSC + GA4 + PageSpeed) [GITIGNORED]
+            ├── credentials.example.json    # Template backup for export
+            ├── mcp_config.json             # 100% generic MCP configuration
+            ├── rules/
+            │   └── AGENTS.md               # Persona, Role, and Data-Driven Principles
+            ├── agents/
+            │   └── seo.md                  # Custom Agent & Subagent definition for the /agents menu
+            ├── server/                     # Native "seo-growth-tools" MCP Server (Pure Node.js)
+            │   ├── index.js
+            │   └── tools/ (suggest, indexnow, crawler, schema, serp, geo, community)
+            ├── skills/
+            │   └── seo-growth-specialist/  # Standard Operating Procedures & 4 Playbooks
+            └── test/
+                └── suite.test.js           # Automated unit test suite (5 unit tests)
 ```
 
 ---
@@ -107,7 +115,7 @@ Before installing, make sure you have:
 
 ---
 
-## 🚀 Installation
+## 🚀 60-Second Quick Installation
 
 ### Option A: Project-Level Installation (Recommended for Teams)
 Install the plugin directly inside your repository so that every team member or agent in this project has access to it:
@@ -115,7 +123,9 @@ Install the plugin directly inside your repository so that every team member or 
 ```bash
 # From the root of your project:
 mkdir -p .agents/plugins/
-git clone https://github.com/CheckSim/SEO-Agent-Plugin.git .agents/plugins/seo-growth-specialist
+git clone https://github.com/CheckSim/SEO-and-Growth-Agent-Plugin.git .agents/plugins/seo-growth-specialist
+cd .agents/plugins/seo-growth-specialist
+npm run setup
 ```
 
 ### Option B: Global Installation (Available Across All Workspaces)
@@ -123,8 +133,18 @@ Make the plugin available everywhere on your machine:
 
 ```bash
 mkdir -p ~/.gemini/config/plugins/
-git clone https://github.com/CheckSim/SEO-Agent-Plugin.git ~/.gemini/config/plugins/seo-growth-specialist
+git clone https://github.com/CheckSim/SEO-and-Growth-Agent-Plugin.git ~/.gemini/config/plugins/seo-growth-specialist
+cd ~/.gemini/config/plugins/seo-growth-specialist
+npm run setup -- --global
 ```
+
+> [!TIP]
+> **What does `npm run setup` do automatically?**
+> 1. Detects whether you are installing locally inside a workspace or globally into `~/.gemini/config`.
+> 2. Dynamically resolves absolute/relative paths to `runner.js`.
+> 3. Performs a **non-destructive Smart-Merge** on `mcp_config.json`, registering the 4 SEO MCP servers while **preserving any existing servers** (e.g. Supabase, Google Maps).
+> 4. Auto-generates `credentials.json` from `credentials.example.json` if not yet present.
+> 5. Runs the automated test suite to ensure the environment is 100% operational.
 
 ---
 
@@ -188,12 +208,12 @@ Follow these 4 simple steps to connect Google Search Console, Google Analytics 4
 
 ---
 
-### Step 4: Prepare the Unified `credentials.json` File
+### Step 4: Configure the Unified `credentials.json` File
 
-1. Place the downloaded Service Account JSON file inside the plugin folder:
+1. If you already ran `npm run setup`, `credentials.json` has already been generated from the template. Otherwise, place or duplicate the file inside the plugin folder:
    - For project installation: `.agents/plugins/seo-growth-specialist/credentials.json`
    - For global installation: `~/.gemini/config/plugins/seo-growth-specialist/credentials.json`
-2. Open `credentials.json` with your code editor and **append the two extra fields at the bottom**:
+2. Open `credentials.json` with your code editor, paste your Google Cloud Service Account credentials, and **fill in the two extra fields at the bottom**:
    - `"ga4_property_id"`: your 9-digit GA4 ID (e.g., `"123456789"`).
    - `"google_api_key"`: your Google Cloud API Key (e.g., `"AIzaSy..."`).
 
