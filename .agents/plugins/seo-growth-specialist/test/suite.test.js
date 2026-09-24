@@ -3,6 +3,7 @@
  */
 
 const assert = require('assert');
+const fs = require('fs');
 const { spawn } = require('child_process');
 const path = require('path');
 
@@ -127,6 +128,45 @@ async function runTests() {
   assert(callResp && callResp.result.content[0].text.includes('Markup JSON-LD valido'), 'Call must succeed');
 
   console.log(`   ✅ OK: Protocollo MCP JSON-RPC 2.0 verificato (${listResp.result.tools.length} tool registrati).`);
+
+  // Test 6: Plugin mcp_config.json Runner Resolution & Spawning
+  console.log('6. Test Plugin mcp_config.json Runner Resolution & Spawning...');
+  const pluginConfigPath = path.resolve(__dirname, '../mcp_config.json');
+  const pluginConfig = JSON.parse(fs.readFileSync(pluginConfigPath, 'utf8'));
+  const toolsConfig = pluginConfig.mcpServers['seo-growth-tools'];
+  assert(toolsConfig, 'seo-growth-tools must be declared in mcp_config.json');
+
+  // Verify runner path exists relative to plugin dir
+  const runnerRelative = toolsConfig.args[0];
+  const resolvedRunner = path.resolve(__dirname, '..', runnerRelative);
+  assert(fs.existsSync(resolvedRunner), `Runner file must exist at ${resolvedRunner}`);
+
+  // Spawn runner.js from plugin dir to verify execution via plugin config
+  const runnerProc = spawn(toolsConfig.command, toolsConfig.args, {
+    cwd: path.resolve(__dirname, '..'),
+    stdio: ['pipe', 'pipe', 'inherit']
+  });
+
+  const gotInitPromise = new Promise((resolve) => {
+    runnerProc.stdout.on('data', d => {
+      const text = d.toString();
+      if (text.includes('seo-growth-suite')) {
+        resolve(true);
+      }
+    });
+  });
+
+  runnerProc.stdin.write(JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'initialize', params: {} }) + '\n');
+  const gotInit = await Promise.race([
+    gotInitPromise,
+    new Promise(r => setTimeout(() => r(false), 2000))
+  ]);
+
+  runnerProc.stdin.end();
+  runnerProc.kill();
+
+  assert(gotInit, 'runner.js must successfully start and reply to initialize');
+  console.log('   ✅ OK: runner.js risolto ed avviato correttamente da mcp_config.json.');
 
   console.log('\n🎉 TUTTI I TEST UNITARI COMPLETATI CON SUCCESSO!\n');
 }

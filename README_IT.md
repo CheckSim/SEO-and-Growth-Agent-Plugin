@@ -133,16 +133,16 @@ Rendi il plugin accessibile per qualsiasi workspace o progetto aperto su Antigra
 mkdir -p ~/.gemini/config/plugins/
 git clone https://github.com/CheckSim/SEO-and-Growth-Agent-Plugin.git ~/.gemini/config/plugins/seo-growth-specialist
 cd ~/.gemini/config/plugins/seo-growth-specialist
-npm run setup -- --global
+npm run setup
 ```
 
 > [!TIP]
 > **Cosa fa automaticamente `npm run setup`?**
-> 1. Rileva automaticamente se ti trovi in una repository locale o nella directory globale `~/.gemini/config`.
-> 2. Risolve dinamicamente i percorsi assoluti/relativi di `runner.js`.
-> 3. Esegue uno **Smart-Merge non distruttivo** su `mcp_config.json`, registrando i 4 server MCP SEO e **preservando intatti** eventuali altri server preesistenti (come Supabase, Google Maps, ecc.).
-> 4. Se `credentials.json` non è presente, lo crea automaticamente dal template `credentials.example.json`.
-> 5. Esegue la suite di test unitari automatizzati per certificare che l'engine sia al 100% operativo.
+> 1. Verifica che la configurazione MCP interna al plugin sia pronta e self-contained per Antigravity.
+> 2. Se `credentials.json` non è presente, lo crea automaticamente dal template `credentials.example.json`.
+> 3. Imposta i corretti permessi di esecuzione (`chmod 755`) su `runner.js`.
+> 4. Pulisce in automatico eventuali configurazioni legacy duplicate per evitare processi doppi.
+> 5. Esegue la suite di test unitari automatizzati certificando che l'engine sia al 100% operativo.
 
 ---
 

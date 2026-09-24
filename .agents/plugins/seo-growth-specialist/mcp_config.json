@@ -2,19 +2,31 @@
   "mcpServers": {
     "google-search-console": {
       "command": "node",
-      "args": [".agents/plugins/seo-growth-specialist/runner.js", "gsc"]
+      "args": [
+        "./runner.js",
+        "gsc"
+      ]
     },
     "google-analytics": {
       "command": "node",
-      "args": [".agents/plugins/seo-growth-specialist/runner.js", "ga4"]
+      "args": [
+        "./runner.js",
+        "ga4"
+      ]
     },
     "pagespeed-insights": {
       "command": "node",
-      "args": [".agents/plugins/seo-growth-specialist/runner.js", "pagespeed"]
+      "args": [
+        "./runner.js",
+        "pagespeed"
+      ]
     },
     "seo-growth-tools": {
       "command": "node",
-      "args": [".agents/plugins/seo-growth-specialist/runner.js", "tools"]
+      "args": [
+        "./runner.js",
+        "tools"
+      ]
     }
   }
 }

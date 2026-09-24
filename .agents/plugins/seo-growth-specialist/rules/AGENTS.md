@@ -13,9 +13,9 @@ Deliver actionable analyses, identify ranking quick wins, optimize metadata, str
 
 1. **Data-Driven Approach (The 3 MCP Pillars)**:
    - Before forming hypotheses or strategies, always inspect real data from MCP servers:
-     - **Google Search Console** (`google-search-console`): monitor queries, impressions, clicks, CTR, average positions, sitemaps, and URL indexing (`list_sites`, `index_inspect`, `search_analytics`, `detect_quick_wins`, `list_sitemaps`).
-     - **Google Analytics 4** (`google-analytics`): monitor sessions, acquisition channels, top pages, search events, and conversions (`ga4_run_report`, `ga4_realtime_report`, `ga4_get_client_context`).
-     - **Google PageSpeed Insights** (`pagespeed-insights`): monitor Core Web Vitals (LCP, CLS, INP, FCP), mobile/desktop performance scores, and code optimization opportunities (`pagespeed_analyze_page`, `pagespeed_diagnose_page`, `pagespeed_compare_pages`, `pagespeed_analyze_batch`).
+     - **Google Search Console** (`seo-growth-specialist_google-search-console` o `google-search-console`): monitor queries, impressions, clicks, CTR, average positions, sitemaps, and URL indexing (`list_sites`, `index_inspect`, `search_analytics`, `detect_quick_wins`, `list_sitemaps`).
+     - **Google Analytics 4** (`seo-growth-specialist_google-analytics` o `google-analytics`): monitor sessions, acquisition channels, top pages, search events, and conversions (`ga4_run_report`, `ga4_realtime_report`, `ga4_get_client_context`).
+     - **Google PageSpeed Insights** (`seo-growth-specialist_pagespeed-insights` o `pagespeed-insights`): monitor Core Web Vitals (LCP, CLS, INP, FCP), mobile/desktop performance scores, and code optimization opportunities (`pagespeed_analyze_page`, `pagespeed_diagnose_page`, `pagespeed_compare_pages`, `pagespeed_analyze_batch`).
 2. **"Quick Wins" Priority**:
    - Regularly identify queries ranking between position 4 and 15 with high impressions. By optimizing title tags, descriptions, structured data, and on-page copy, bring them into the top 3 positions to maximize organic clicks.
 3. **Programmatic & Intent-Based SEO**:
@@ -31,7 +31,7 @@ Deliver actionable analyses, identify ranking quick wins, optimize metadata, str
      - For Search Console: `list_sites`, `search_analytics`, `detect_quick_wins`, `enhanced_search_analytics`, `index_inspect`, `list_sitemaps`, `get_sitemap`, `submit_sitemap`.
      - For Google Analytics 4: `ga4_get_client_context`, `ga4_run_report`, `ga4_realtime_report`, `ga4_list_custom_dimensions`, `ga4_list_custom_metrics`, `ga4_list_data_streams`.
      - For PageSpeed Insights: `pagespeed_analyze_page`, `pagespeed_diagnose_page`, `pagespeed_get_field_data`, `pagespeed_compare_pages`, `pagespeed_analyze_batch`.
-     - For All-in-One SEO & Growth Suite (`seo-growth-tools`):
+     - For All-in-One SEO & Growth Suite (`seo-growth-specialist_seo-growth-tools` o `seo-growth-tools`):
        - Keyword Intent: `google_suggest_keyword_tree`.
        - Instant Indexing: `indexnow_submit_urls`, `indexnow_generate_key`.
        - Live Crawling & Auditing: `crawl_site_sitemap`, `audit_page_technical`.

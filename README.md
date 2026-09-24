@@ -135,15 +135,15 @@ Make the plugin available everywhere on your machine:
 mkdir -p ~/.gemini/config/plugins/
 git clone https://github.com/CheckSim/SEO-and-Growth-Agent-Plugin.git ~/.gemini/config/plugins/seo-growth-specialist
 cd ~/.gemini/config/plugins/seo-growth-specialist
-npm run setup -- --global
+npm run setup
 ```
 
 > [!TIP]
 > **What does `npm run setup` do automatically?**
-> 1. Detects whether you are installing locally inside a workspace or globally into `~/.gemini/config`.
-> 2. Dynamically resolves absolute/relative paths to `runner.js`.
-> 3. Performs a **non-destructive Smart-Merge** on `mcp_config.json`, registering the 4 SEO MCP servers while **preserving any existing servers** (e.g. Supabase, Google Maps).
-> 4. Auto-generates `credentials.json` from `credentials.example.json` if not yet present.
+> 1. Verifies the plugin's self-contained MCP configuration for native Antigravity discovery.
+> 2. Auto-generates `credentials.json` from `credentials.example.json` if not yet present.
+> 3. Sets correct execution permissions (`chmod 755`) for `runner.js`.
+> 4. Cleans up any legacy duplicate configurations to prevent dual server instances.
 > 5. Runs the automated test suite to ensure the environment is 100% operational.
 
 ---
